@@ -1,0 +1,1 @@
+audioContext解码blob:数据在chrome目前（56.0.2914.3）还不支持，firefox已提供接口解决。
