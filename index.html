@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  
+    <title>Title</title>
+    <style>
+        *{
+            color: #ffffff;
+            font-size: 30px;
+        }
+        .btns{
+            display: inline-block;
+            width:150px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 30px;
+            background-color: #cccccc;
+        }
+        .btn_xuan{
+            background-color: #0FBC0A;
+        }
+        .mess{
+            font-size: 30px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<audio id="audio" src="mp3/wuyufei.mp3">
+    Your browser does not support HTML5 video.
+</audio>
+<div id="l1" class="btns">录音</div>
+<div id="l2" class="btns">结束听录音</div>
+<div id="l3" class="btns">听录音</div>
+<audio id="audio2" src=""></audio>
+<div id="message" class="mess"></div>
+<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/base.js?t=5"></script>
+<script src="js/audioFocus.js?t=6"></script>
+<script>
+    lu.getSpeaker();
+    merger.init();
+    function luying(){
+        document.getElementById('audio').play();
+        alert('开始')
+        if (document.getElementById('audio').paused) {
+            // 暂停中
+            alert('暂停中')
+        } else {
+            // 播放中
+            alert('播放中')
+        }
+        lu.mediaRecorder.start()
+        alert('进行')
+
+    }
+    //3.停止录音
+    function end(){
+        document.getElementById('audio').pause();
+        lu.stop()
+    }
+    function end2(){
+        merger.stop()
+    }
+
+    /*
+    *
+    *
+    *
+    *
+    * 1 navigator.mediaDevices.getUserMedia 在电视上不支持麦克风
+    * 2 MediaRecorder 下的events不支持 导致电视上不能进行录音的后续测试
+    *     测试中 录音的开始和结束不能得到支持  start事件 stop事件
+    * 3 AudioContext.decodeAudioData() 对自己录音的文件不能转为buffer
+    * 4 通过检测 电视支持audio标签，但是播放的时候没声音。导致不知道文件是否播放，也不知道录音是否正常
+    *
+    *
+    * */
+</script>
+
+
+</body>
+</html>
